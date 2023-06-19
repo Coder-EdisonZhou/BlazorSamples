@@ -1,0 +1,19 @@
+﻿<!--this is CascCompSample.razor-->
+
+@page "/cascparamsample"
+
+<h3>This is the sample page</h3>
+
+<CascadingValue Value="currentNickName" Name="NickName">
+    <CascadingValue Value="currentAge" Name="Age">
+        <CascComp1></CascComp1>
+    </CascadingValue>
+</CascadingValue>
+
+@code
+{
+    private string currentNickName = "Edison Zhou";
+    private int currentAge = 34;
+}
+
+

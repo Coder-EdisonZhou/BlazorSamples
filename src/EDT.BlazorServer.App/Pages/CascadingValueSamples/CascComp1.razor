@@ -1,0 +1,13 @@
+﻿<!--this is CascComp1.razor-->
+
+<h3>Comp1: @NickName - @Age</h3>
+
+<CascComp2></CascComp2>
+
+@code {
+    [CascadingParameter(Name="NickName")]
+    public string NickName { get; set; }
+
+    [CascadingParameter(Name="Age")]
+    public int Age { get; set; }
+}

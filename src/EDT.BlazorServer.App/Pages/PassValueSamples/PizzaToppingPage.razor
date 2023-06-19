@@ -1,0 +1,9 @@
+﻿@using EDT.BlazorServer.App.Models
+
+<p>New Topping: @Topping.Name</p>
+<p>Ingredients: @Topping.Ingredients</p>
+
+@code {
+    [Parameter]
+    public PizzaTopping Topping { get; set; }
+}

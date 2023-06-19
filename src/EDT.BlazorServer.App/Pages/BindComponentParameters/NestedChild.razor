@@ -1,0 +1,33 @@
+﻿@page "/nested-child"
+
+<div class="border rounded m-1 p-1">
+    <h2>Child Component</h2>
+
+    <p>Child Message: <b>@ChildMessage</b></p>
+
+    <p>
+        <button @onclick="ChangeValue">Change from Child</button>
+    </p>
+
+    <NestedGrandChild @bind-GrandchildMessage="BoundValue" />
+</div>
+
+@code {
+    [Parameter]
+    public string? ChildMessage { get; set; }
+
+    [Parameter]
+    public EventCallback<string> ChildMessageChanged { get; set; }
+
+    private string BoundValue
+    {
+        get => ChildMessage ?? string.Empty;
+        set => ChildMessageChanged.InvokeAsync(value);
+    }
+
+    private async Task ChangeValue()
+    {
+        await ChildMessageChanged.InvokeAsync(
+            $"Set in Child {DateTime.Now}");
+    }
+}
