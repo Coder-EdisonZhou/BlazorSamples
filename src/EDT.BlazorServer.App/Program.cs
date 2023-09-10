@@ -2,6 +2,8 @@ using EDT.BlazorServer.App.Models;
 using EDT.BlazorServer.App.Service;
 using EDT.BlazorServer.App.Service.Contracts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.ResponseCompression;
+using EDT.BlazorServer.App.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,12 @@ builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseInMemoryDatabase("TodoList"));
 // Add Localization
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+// Add  Response Compression for SignalR
+builder.Services.AddResponseCompression(opts =>
+{
+    opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+          new[] { "application/octet-stream" });
+});
 
 var app = builder.Build();
 
@@ -30,6 +38,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.MapControllers();
 app.MapBlazorHub();
+app.MapHub<MyChatHub>("/mychathub"); // Add Map for SignalR Hubs
 app.MapFallbackToPage("/_Host");
 
 // Use Localization
@@ -45,6 +54,9 @@ app.UseRequestLocalization(options =>
     // 当Http响应时，将 当前区域信息 设置到 Response Header：Content-Language 中
     options.ApplyCurrentCultureToResponseHeaders = true;
 });
+
+// Use Response Compression for SignalR
+app.UseResponseCompression();
 
 // Initialize the database
 var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
