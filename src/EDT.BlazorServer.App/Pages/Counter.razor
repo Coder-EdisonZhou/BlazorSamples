@@ -6,14 +6,56 @@
 
 <p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+@* <button class="btn btn-primary" @onclick="IncrementCount">Click me</button> *@
+<button class="btn btn-primary" @onclick="@(async() => await IncrementCountConfirmation())">Click me</button>
 
 <h1>My favorite pizza is: @favPizza</h1>
 
-<p>
+@* <p>
     Enter your favorite pizza:
     <input @bind-value="favPizza" @bind-value:event="oninput" />
+</p> *@
+
+<h1>Call .NET Example From JavaScript - Sample 1</h1>
+
+<p>
+    <button onclick="returnArrayAsync()">
+        Trigger .NET static method
+    </button>
 </p>
+
+<h1>Call .NET Example From JavaScript - Sample 2</h1>
+
+<p>
+    <label>
+        Name: <input @bind="name" />
+    </label>
+</p>
+
+<p>
+    <button @onclick="TriggerDotNetInstanceMethod">
+        Trigger .NET instance method
+    </button>
+</p>
+
+<p>
+    @result
+</p>
+
+<script>
+    window.returnArrayAsync = () => {
+        DotNet.invokeMethodAsync('EDT.BlazorServer.App', 'ReturnArrayAsync')
+            .then(data => {
+                console.log(data);
+            });
+    };
+</script>
+
+<script>
+    window.sayHello = (dotNetHelper) => {
+        return dotNetHelper.invokeMethodAsync('GetHelloMessage');
+    };
+</script>
 
 @code {
     private int currentCount = 0;
@@ -21,10 +63,49 @@
     [Parameter]
     public int IncrementAmount { get; set; } = 1;
 
+    [Inject]
+    public IJSRuntime JavaScript { get; set; }
+
     private void IncrementCount()
     {
         currentCount += IncrementAmount;
     }
 
     private string favPizza { get; set; } = "Margherita";
+
+    private async Task IncrementCountConfirmation()
+    {
+        if (await JavaScript.InvokeAsync<bool>("confirm", $"Do you want to increment the count?"))
+        {
+            currentCount += IncrementAmount;
+        }
+    }
+
+    [JSInvokable]
+    public static Task<int[]> ReturnArrayAsync()
+    {
+        return Task.FromResult(new int[] { 1, 2, 3 });
+    }
+
+    private string? name;
+    private string? result;
+    private DotNetObjectReference<Counter>? objRef;
+
+    protected override void OnInitialized()
+    {
+        objRef = DotNetObjectReference.Create(this);
+    }
+
+    public async Task TriggerDotNetInstanceMethod()
+    {
+        result = await JavaScript.InvokeAsync<string>("sayHello", objRef);
+    }
+
+    [JSInvokable]
+    public string GetHelloMessage() => $"Hello, {name}!";
+
+    public void Dispose()
+    {
+        objRef?.Dispose();
+    }
 }
