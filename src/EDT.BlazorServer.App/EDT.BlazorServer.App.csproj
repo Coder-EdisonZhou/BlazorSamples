@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.20" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EDT.BlazorComponent.Dialog\EDT.BlazorComponent.Dialog.csproj" />
+  </ItemGroup>
+
 </Project>
