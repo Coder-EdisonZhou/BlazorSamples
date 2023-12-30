@@ -129,3 +129,7 @@ UpgradeLog*.XML
 /src/03_ingress-demo/.vs/EDC.K8S.Demo.WebApi/v15/Server/sqlite3/*.ide
 /src/03_ingress-demo/.vs/EDC.K8S.Demo.WebApi/v15/Server/sqlite3/*.ide-shm
 /src/03_ingress-demo/.vs/EDC.K8S.Demo.WebApi/v15/Server/sqlite3/*.ide-wal
+/src/.vs/EDT.Blazor.Sample/FileContentIndex/*.vsidx
+/src/.vs/ProjectEvaluation/*.bin
+/src/.vs/EDT.Blazor.Sample/DesignTimeBuild/.dtbcache.v2
+/src/.vs/EDT.Blazor.Sample/v17/.futdcache.v2

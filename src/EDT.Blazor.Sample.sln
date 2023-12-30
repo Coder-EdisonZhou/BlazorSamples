@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EDT.BlazorServer.App", "EDT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Libraries", "00.Libraries", "{CE862342-7930-4366-AB71-D0CA5E8A0D7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDT.BlazorComponent.Dialog", "EDT.BlazorComponent.Dialog\EDT.BlazorComponent.Dialog.csproj", "{B7AEE099-F79E-4579-B1C5-3F1E006E84F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EDT.BlazorComponent.Dialog", "EDT.BlazorComponent.Dialog\EDT.BlazorComponent.Dialog.csproj", "{B7AEE099-F79E-4579-B1C5-3F1E006E84F6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EDT.BlazorWasm.App", "EDT.BlazorWasm.App\EDT.BlazorWasm.App.csproj", "{4D3C31C0-1CB5-4F91-857D-208B02A00AF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{B7AEE099-F79E-4579-B1C5-3F1E006E84F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7AEE099-F79E-4579-B1C5-3F1E006E84F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7AEE099-F79E-4579-B1C5-3F1E006E84F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D3C31C0-1CB5-4F91-857D-208B02A00AF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D3C31C0-1CB5-4F91-857D-208B02A00AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D3C31C0-1CB5-4F91-857D-208B02A00AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D3C31C0-1CB5-4F91-857D-208B02A00AF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9D5D87FC-5941-4409-9BFF-8E69AF83000C} = {FC4A2F48-82ED-4CA8-B5E2-9803AABC12C8}
 		{B7AEE099-F79E-4579-B1C5-3F1E006E84F6} = {CE862342-7930-4366-AB71-D0CA5E8A0D7D}
+		{4D3C31C0-1CB5-4F91-857D-208B02A00AF9} = {27DFCE28-42C6-476C-9925-DBCFEA54C17F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D89BE11-6AB9-447A-AFF0-09B57849537A}
